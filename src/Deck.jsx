@@ -3,8 +3,11 @@ class Deck extends React.Component {
         super(props);
     }
 
+    passResult(url) {
+        console.log(url)
+    }
+
     render() {
-        console.log(this.props.cards);
         return (
             <div>
                 {this.props.cards.map(obj => 
@@ -12,6 +15,10 @@ class Deck extends React.Component {
                         name={obj.name} 
                         set={obj.set}
                         number={obj.number}
+                        id={obj.id}
+                        imageUrl={obj.imageUrl}
+
+                        deleteCard={this.props.deleteCard}
                 />)}
             </div>
         );
