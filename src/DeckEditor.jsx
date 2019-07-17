@@ -4,8 +4,8 @@ class DeckEditor extends React.Component {
         this.state = {
             cardInput: "",
             cardInputResults: [],
-            loadedCards: [],
-            renderDeck: false
+            renderDeck: false,
+            loadedCards: []
         };
 
         this.deleteCard = this.deleteCard.bind(this);
@@ -44,23 +44,19 @@ class DeckEditor extends React.Component {
                     "id": Date.now(),
                     "imageUrl": result.cards[0].imageUrl
                 };
-
-                console.log(cardObj)
-                console.log([...this.state.loadedCards, cardObj] )
-        
+                
                 this.setState({ 
                     loadedCards: [...this.state.loadedCards, cardObj] ,
                     cardInput: val
-                });
+                }, () => {this.props.updateDeck(this.state.loadedCards);})
             }
         )
     }
 
-    deleteCard(id) {
-        console.log(id);
+    deleteCard(id) {;
         let newCards = this.state.loadedCards.filter(obj => obj.id != id);
         console.log(newCards);
-        this.setState({ loadedCards: newCards })
+        this.setState({ loadedCards: newCards }, () => {this.props.updateDeck(this.state.loadedCards);})
     }
 
     fetchCardUrl(obj) {
@@ -74,9 +70,6 @@ class DeckEditor extends React.Component {
     }
 
     componentDidMount() {
-        $("img").draggable ();
-        $("img").draggable ('enable');
-
         $("#tags").autocomplete({
             //source: this.state.cardInputResults,
             source: this.state.cardInputResults,
@@ -90,8 +83,10 @@ class DeckEditor extends React.Component {
                 <div className="ui-widget">
                     <label for="tags">Enter a card name: </label>
                     <input onInput={(e) => this.handleChange(e)} id="tags" />
-                    <button onClick={() => this.loadCard(this.state.cardInput)}>Insert another</button>
                 </div>
+
+                <button onClick={() => this.loadCard(this.state.cardInput)}>Insert another</button>
+                <button onClick={() => this.props.toggleViewState("game")}>Play the game</button>
 
                 <Deck 
                     cards={this.state.loadedCards} 
@@ -101,8 +96,3 @@ class DeckEditor extends React.Component {
         );
     }
 };
-
-ReactDOM.render(
-    <DeckEditor />,
-    document.getElementById('root')
-);

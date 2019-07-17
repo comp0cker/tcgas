@@ -2,11 +2,7 @@ class Deck extends React.Component {
     constructor(props) {
         super(props);
     }
-
-    passResult(url) {
-        console.log(url)
-    }
-
+    
     render() {
         return (
             <div>
@@ -18,7 +14,7 @@ class Deck extends React.Component {
                         id={obj.id}
                         imageUrl={obj.imageUrl}
 
-                        deleteCard={this.props.deleteCard}
+                        onCardClick={() => this.props.deleteCard(obj.id)}
                 />)}
             </div>
         );
