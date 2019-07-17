@@ -1,33 +1,19 @@
 class Card extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             cardUrl: ""
         }
     }
 
     componentDidMount() {
-        $("img").draggable ();
-        $("img").draggable ('enable');
-
-        fetch(this.getCardUrl("Tapu Lele"))
+        fetch(getCardUrl(this.props.name, this.props.set, this.props.number))
         .then(res => res.json())
         .then(
             (result) => {
                 this.setState({ cardUrl: result.cards[0].imageUrl })
             }
         )
-    }
-
-    getCardUrl(input)
-    {
-        input = input.split(" GX").join("-GX");
-        input = input.split(" EX").join("-EX");
-
-        var count = get_count(input); // yeah rip the count variable (we might wanna do some cool stack effect tho)
-        input = crop_count(input);
-        var url = parse_input(input);
-        return url;
     }
 
     render() {

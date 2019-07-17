@@ -1,35 +1,30 @@
-function get_deck(input)
-{
-    var lines = input.split('\n');
-    for(var i = 0; i < lines.length; i++){
+function getDeckUrls(lines)
+{  
+    var deckUrls = [];
+    for (var i = 0; i < lines.length; i++){
         if (lines[i].trim() != "" && lines[i].trim() != "Pokemon" && lines[i].trim() != "Trainers" && lines[i].trim() != "Energy") {
-            get_card(lines[i].trim());
+            deckUrls.push(lines[i].trim());
         }
     }
+    return deckUrls;
 }
 
 function add_quotes(input) {
     return '"' + input + '"';
 }
 
-function get_card(input)
+function getCardUrl(input, set, number)
 {
-    input = input.innerText;
     input = input.split(" GX").join("-GX");
     input = input.split(" EX").join("-EX");
 
     var count = get_count(input); // yeah rip the count variable (we might wanna do some cool stack effect tho)
     input = crop_count(input);
     var url = parse_input(input);
-    console.log(url);
+    if (set) url += "&set=" + set.split(" ").join("+");
+    if (number) url += "&number=" + number;
 
-    $.ajax({
-        async: false,
-        url: url,
-        success: function (data) {
-            return <img src={add_quotes(data.cards[0].imageUrl)} height="300px" />;
-        }
-    });
+    return url;
 }
 
 function parse_input(line)
@@ -113,6 +108,20 @@ function get_exceptions(input){
         return '"Switch"';
     else   
         return input
+}
+
+function convertSetToAbbr(set) {
+    if (set == "sm10") return "UNB";
+    if (set == "sm9") return "TEU";
+    if (set == "sm8") return "LOT";
+    if (set == "sm7") return "CES";
+    if (set == "sm6") return "FLI";
+    if (set == "sm5") return "ULP";
+    if (set == "sm4") return "CIN";
+    if (set == "sm35") return "SHL";
+    if (set == "sm3") return "BUS"
+    if (set == "sm2") return "GRI";
+    return set;
 }
 
 function set_convert(abbr){
