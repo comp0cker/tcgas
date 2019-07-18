@@ -90,7 +90,7 @@ class DeckEditor extends React.Component {
 
                 <Deck 
                     cards={this.state.loadedCards} 
-                    deleteCard={this.deleteCard}
+                    onDeckCardClick={this.deleteCard}
                 />
             </div>
         );

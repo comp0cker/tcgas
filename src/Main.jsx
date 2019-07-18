@@ -3,7 +3,8 @@ class Main extends React.Component {
         super();
         this.state = {
             view: "deckEdit",
-            deck: []
+            deck: [],
+            hand: []
         }
 
         this.toggleViewState = this.toggleViewState.bind(this);
@@ -11,7 +12,6 @@ class Main extends React.Component {
     }
 
     toggleViewState(view) {
-        console.log("whomp")
         this.setState({
             view: view
         })
@@ -23,8 +23,8 @@ class Main extends React.Component {
 
     render() {
         return (
-            this.state.view == "deckEdit" ? <DeckEditor toggleViewState={this.toggleViewState} updateDeck={this.updateDeck}/> :
-            this.state.view == "game" ? <Game deck={this.state.deck}/> : 
+            this.state.view === "deckEdit" ? <DeckEditor toggleViewState={this.toggleViewState} updateDeck={this.updateDeck}/> :
+            this.state.view === "game" ? <Game deck={this.state.deck} hand={this.state.hand}/> : 
             null
         );
     }

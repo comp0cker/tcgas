@@ -1,8 +1,8 @@
-class Deck extends React.Component {
+class Hand extends React.Component {
     constructor(props) {
         super(props);
     }
-    
+
     render() {
         return (
             <div>
@@ -14,9 +14,9 @@ class Deck extends React.Component {
                         id={obj.id}
                         imageUrl={obj.imageUrl}
 
-                        onCardClick={() => this.props.onDeckCardClick(obj.id)}
+                        onCardClick={() => this.props.playCard(obj.id)}
                 />)}
             </div>
         );
     }
-};
+}

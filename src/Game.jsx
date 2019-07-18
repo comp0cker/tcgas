@@ -3,10 +3,12 @@ class Game extends React.Component {
         super(props);
 
         this.state = {
-            deck: props.deck
+            deck: props.deck,
+            hand: props.hand
         }
 
-        this.onCardClick = this.onCardClick.bind(this);
+        this.onDeckCardClick = this.onDeckCardClick.bind(this);
+        this.playCardFromHand = this.playCardFromHand.bind(this);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -36,28 +38,34 @@ class Game extends React.Component {
         */
     }
 
-    onCardClick() {
-        console.log("clicked");
+    onDeckCardClick(cardId) {
+        let clickedCard = this.state.deck.filter(card => card.id === cardId)[0];
+        this.setState({
+            hand: [...this.state.hand, clickedCard]
+        })
+        console.log("clicked" + cardId);
     }
 
     onCardDrag() {
         console.log("dragged");
     }
 
+    playCardFromHand() {
+        console.log("played!");
+    }
+
     render() {
         return (
             <div>
                 <button onClick={() => this.shuffleDeck()}>shuffle</button>
-                {this.state.deck.map(obj => 
-                    <Card 
-                        name={obj.name} 
-                        set={obj.set}
-                        number={obj.number}
-                        id={obj.id}
-                        imageUrl={obj.imageUrl}
-
-                        onCardClick={() => this.onCardClick()}
-                />)}
+                <Deck 
+                    cards={this.state.deck}
+                    onDeckCardClick={this.onDeckCardClick}
+                />
+                <Hand 
+                    cards={this.state.hand}
+                    onHandCardClick={this.playCardFromHand}
+                />
             </div>
         );
     }
