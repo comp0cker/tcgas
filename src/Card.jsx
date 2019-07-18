@@ -5,7 +5,7 @@ class Card extends React.Component {
 
     render() {
         return (
-            <img src={this.props.imageUrl} height="300px" onClick={() => this.props.onCardClick() }/>
+            <img src={this.props.imageUrl} height={CARD_HEIGHT} onClick={() => this.props.onCardClick() }/>
         );
     }
 }
