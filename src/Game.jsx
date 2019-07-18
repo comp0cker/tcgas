@@ -24,25 +24,32 @@ class Game extends React.Component {
     }
 
     componentDidMount() {
-        $("img").draggable ();
-        $("img").draggable ('enable');
-        //$("img").on( "dragstart", ( event, ui ) => this.onCardDrag() );
-        $( "img" ).draggable( "option", "stack", "img" );
-
-        /*
-        $("img").position({
+        // Center the deck
+        $(".deck").position({
             my: "center",
             at: "center",
-            of: "img"
+            of: ".deck"
         });
-        */
+
+        // Start the game by shuffling the deck
+        this.shuffleDeck();
+
+    }
+
+    componentDidUpdate() {
+        // Make the hand draggable
+        $(".hand").draggable ();
+        $(".hand").draggable ('enable');
+        $( ".hand" ).draggable( "option", "stack", ".hand" )
     }
 
     onDeckCardClick(cardId) {
         let clickedCard = this.state.deck.filter(card => card.id === cardId)[0];
         this.setState({
-            hand: [...this.state.hand, clickedCard]
+            hand: [...this.state.hand, clickedCard],
+            deck: this.state.deck.filter(card => card.id !== cardId)
         })
+
         console.log("clicked" + cardId);
     }
 

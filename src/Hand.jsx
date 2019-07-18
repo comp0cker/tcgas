@@ -13,6 +13,7 @@ class Hand extends React.Component {
                         number={obj.number}
                         id={obj.id}
                         imageUrl={obj.imageUrl}
+                        class="hand"
 
                         onCardClick={() => this.props.playCard(obj.id)}
                 />)}

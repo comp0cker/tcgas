@@ -13,6 +13,7 @@ class Deck extends React.Component {
                         number={obj.number}
                         id={obj.id}
                         imageUrl={obj.imageUrl}
+                        class="deck"
 
                         onCardClick={() => this.props.onDeckCardClick(obj.id)}
                 />)}
