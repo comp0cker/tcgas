@@ -80,9 +80,9 @@ class DeckEditor extends React.Component {
     render() {
         return (
             <div>
-                <div className="ui-widget">
-                    <label for="tags">Enter a card name: </label>
-                    <input onInput={(e) => this.handleChange(e)} id="tags" />
+                <label for="tags">Enter a card name</label>
+                <div className="ui-widget input-group mb-3">
+                    <input placeholder="eg Pikachu" onInput={(e) => this.handleChange(e)} id="tags" />
                 </div>
 
                 <button onClick={() => this.loadCard(this.state.cardInput)}>Insert another</button>

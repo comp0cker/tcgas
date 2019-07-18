@@ -41,6 +41,7 @@ class Game extends React.Component {
         $(".hand").draggable ();
         $(".hand").draggable ('enable');
         $( ".hand" ).draggable( "option", "stack", ".hand" )
+        $( ".hand" ).draggable( "option", "snap", true )
     }
 
     onDeckCardClick(cardId) {
