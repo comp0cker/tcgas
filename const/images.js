@@ -1,0 +1,1 @@
+const CARD_BACK_URL = "https://images.pokemontcg.io/sm1/200";

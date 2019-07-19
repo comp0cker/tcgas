@@ -1,8 +1,8 @@
-class Deck extends React.Component {
+class Discard extends React.Component {
     constructor(props) {
         super(props);
     }
-    
+
     render() {
         return (
             <div>
@@ -13,11 +13,12 @@ class Deck extends React.Component {
                         number={obj.number}
                         id={obj.id}
                         imageUrl={obj.imageUrl}
-                        class="deck"
+                        supertype={obj.supertype}
+                        class="discard"
 
-                        onCardClick={() => this.props.onDeckCardClick(obj.id)}
+                        //onCardClick={() => this.props.onFieldCardClick(obj.id, obj.supertype)}
                 />)}
             </div>
         );
     }
-};
+}

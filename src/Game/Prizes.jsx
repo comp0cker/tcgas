@@ -1,11 +1,11 @@
-class Hand extends React.Component {
+class Prizes extends React.Component {
     constructor(props) {
         super(props);
     }
 
     render() {
         return (
-            <div className="fixed-bottom">
+            <div>
                 {this.props.cards.map(obj => 
                     <Card 
                         name={obj.name} 
@@ -13,9 +13,10 @@ class Hand extends React.Component {
                         number={obj.number}
                         id={obj.id}
                         imageUrl={obj.imageUrl}
-                        class="hand"
+                        supertype={obj.supertype}
+                        class="prize"
 
-                        onCardClick={() => this.props.playCard(obj.id)}
+                        onPrizeCardClick={() => this.props.onPrizeCardClick(obj.id)}
                 />)}
             </div>
         );

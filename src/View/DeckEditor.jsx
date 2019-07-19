@@ -42,7 +42,8 @@ class DeckEditor extends React.Component {
                     "set": set,
                     "number": number,
                     "id": Date.now(),
-                    "imageUrl": result.cards[0].imageUrl
+                    "imageUrl": result.cards[0].imageUrl,
+                    "supertype": result.cards[0].supertype
                 };
                 
                 this.setState({ 
@@ -91,6 +92,7 @@ class DeckEditor extends React.Component {
                 <Deck 
                     cards={this.state.loadedCards} 
                     onDeckCardClick={this.deleteCard}
+                    view={true}
                 />
             </div>
         );
