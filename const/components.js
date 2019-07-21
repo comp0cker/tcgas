@@ -1,1 +1,2 @@
 const CARD_WIDTH = "100px";
+const WIDTH_TO_HEIGTH=1.39583;
