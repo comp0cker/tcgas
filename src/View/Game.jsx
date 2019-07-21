@@ -59,7 +59,11 @@ class Game extends React.Component {
     }
 
     componentDidUpdate() {
+        // Make the hand sortable
         $(".hand-div").sortable();
+
+        // Stack the discard
+
         // Make the hand draggable
         /*
         $(".hand").draggable();
@@ -115,13 +119,13 @@ class Game extends React.Component {
                 <button onClick={() => this.startGame()}>start game</button>
 
                 <div className="row ">
-                    <div className="col prize-area">
+                    <div className="col prize-area area">
                         <Card 
                             cardBack={true}
                             onCardClick={() => this.takePrize()}
                         />
                     </div>
-                    <div className="col deck-area">
+                    <div className="col deck-area area">
                         <button onClick={() => this.shuffleDeck()}>shuffle</button>
                         <button onClick={() => this.drawCard(7)}>draw 7</button>
                         <button onClick={() => this.prizeFromTopDeck(6)}>prize 6</button>
@@ -131,19 +135,16 @@ class Game extends React.Component {
                             onCardClick={() => this.drawCard(1)}
                         />}
                     </div>
-                </div>
-
-                <div className="row">
-                    <div className="col discard-area">
+                    <div className="col discard-area area">
                         <Discard cards={this.state.discard} />
                     </div>
-                    <div className="col lost-zone-area">
+                    <div className="col lost-zone-area area">
                         <LostZone cards={this.state.lostZone} />
                     </div>
                 </div>
 
                 <div className="row">
-                    <div className="col field-area">
+                    <div className="col field-area area">
                         <Field
                             cards={this.state.field}
                         />
@@ -151,7 +152,7 @@ class Game extends React.Component {
                 </div>
 
                 <div className="row">
-                    <div className="col hand-area">
+                    <div className="col hand-area area">
                         <Hand
                             cards={this.state.hand}
                             onHandCardClick={this.playCardFromHand}

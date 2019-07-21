@@ -1,10 +1,20 @@
-.deck {
+.card {
     width: 100px;
+    display: inline;
 }
+
+.area {
+    height: 139.583px;
+}
+
+.discard {
+    position: absolute;
+}
+
 .deck-area {
     background-color: aqua;
 }
 
-.div {
-    border: 5px;
+.hand-area {
+    background-color: brown;
 }

@@ -7,16 +7,14 @@ class Card extends React.Component {
             return (
                 <img 
                 src={CARD_BACK_URL} 
-                className={this.props.class}
-                width={CARD_WIDTH} 
+                className={this.props.class + " card"}
                 onClick={() => this.props.onCardClick() }/>
             );
         }
         return (
             <img 
                 src={this.props.imageUrl} 
-                className={this.props.class + "ui-state-default"}
-                width={CARD_WIDTH} 
+                className={this.props.class + " card ui-state-default"} 
                 onClick={() => this.props.onCardClick() }/>
         );
     }
