@@ -5,7 +5,7 @@ class Hand extends React.Component {
 
     render() {
         return (
-            <div className="fixed-bottom">
+            <div className="hand-div">
                 {this.props.cards.map(obj => 
                     <Card 
                         name={obj.name} 

@@ -15,8 +15,6 @@ class Field extends React.Component {
                         imageUrl={obj.imageUrl}
                         supertype={obj.supertype}
                         class="field"
-
-                        onCardClick={() => this.props.onFieldCardClick(obj.id, obj.supertype)}
                 />)}
             </div>
         );

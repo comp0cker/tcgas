@@ -5,7 +5,7 @@ class Deck extends React.Component {
     
     render() {
         return (
-            <div className="deck-area">
+            <div>
                 {this.props.cards.map(obj => 
                     <Card 
                         name={obj.name} 

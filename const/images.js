@@ -1,1 +1,1 @@
-const CARD_BACK_URL = "https://images.pokemontcg.io/sm1/200";
+const CARD_BACK_URL = "https://upload.wikimedia.org/wikipedia/en/3/3b/Pokemon_Trading_Card_Game_cardback.jpg";

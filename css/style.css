@@ -1,0 +1,12 @@
+.deck {
+    width: 100px;
+}
+.deck-area {
+    background-color: aqua;
+    height: 500px;
+    width: 500px;
+}
+
+.div {
+    border: 5px;
+}

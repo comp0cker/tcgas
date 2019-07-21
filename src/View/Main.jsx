@@ -23,7 +23,7 @@ class Main extends React.Component {
     render() {
         return (
             this.state.view === "deckEdit" ? <DeckEditor toggleViewState={this.toggleViewState} updateDeck={this.updateDeck}/> :
-            this.state.view === "game" ? <Game deck={this.state.deck} hand={this.state.hand} field={this.state.field}/> : 
+            this.state.view === "game" ? <Game deck={this.state.deck} /> : 
             null
         );
     }

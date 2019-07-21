@@ -1,1 +1,1 @@
-const CARD_HEIGHT = "200px";
+const CARD_WIDTH = "100px";

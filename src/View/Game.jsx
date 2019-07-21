@@ -11,7 +11,7 @@ class Game extends React.Component {
             prizes: []
         };
 
-        this.onDeckCardClick = this.onDeckCardClick.bind(this);
+        this.drawCard = this.drawCard.bind(this);
         this.playCardFromHand = this.playCardFromHand.bind(this);
     }
 
@@ -21,25 +21,45 @@ class Game extends React.Component {
         }
     }
 
+    setUpGame() {
+        this.drawCard(7);
+        //this.prizeFromTopDeck(6);
+    }
+
     shuffleDeck() {
         this.setState({
             deck: _.shuffle(this.state.deck)
         });
     }
 
-    componentDidMount() {
-        // Center the deck
-        $(".deck").position({
-            my: "center",
-            at: "center",
-            of: ".deck"
-        });
+    drawCard(numCards) {
+        let cards = this.state.deck.slice(0, numCards);
+        let newDeck = this.state.deck.slice(numCards, this.state.deck.length);
+        console.log(cards);
 
+        this.setState({
+            hand: this.state.hand.concat(cards),
+            deck: newDeck
+        });
+    }
+
+    prizeFromTopDeck(numCards) {
+        let cards = this.state.deck.slice(0, numCards);
+        let newDeck = this.state.deck.slice(numCards, this.state.deck.length);
+        this.setState({
+            prizes: this.state.hand.concat(cards),
+            deck: newDeck
+        })
+    }
+
+    componentDidMount() {
         // Start the game by shuffling the deck
         this.shuffleDeck();
+        // Center the deck
     }
 
     componentDidUpdate() {
+        $(".hand-div").sortable();
         // Make the hand draggable
         /*
         $(".hand").draggable();
@@ -86,7 +106,7 @@ class Game extends React.Component {
     }
 
     takePrize(id) {
-        console.log("taken prize!");
+        console.log(this.state.prizes);
     }
 
     render() {
@@ -94,45 +114,49 @@ class Game extends React.Component {
             <div className="container">
                 <button onClick={() => this.startGame()}>start game</button>
 
-                <div className="row">
-                    <div className="col">
-                        <Prizes 
-                            cards={this.state.prizes} 
-                            onPrizeCardClick={this.takePrize}
+                <div className="row ">
+                    <div className="col prize-area">
+                        <Card 
+                            cardBack={true}
+                            onCardClick={() => this.takePrize()}
                         />
                     </div>
-                    <div className="col">
-                        <button onClick={() => this.shuffleDeck()}>
-                            shuffle
-                        </button>
-                        <Deck
-                            cards={this.state.deck}
-                            onDeckCardClick={this.onDeckCardClick}
-                        />
+                    <div className="col deck-area">
+                        <button onClick={() => this.shuffleDeck()}>shuffle</button>
+                        <button onClick={() => this.drawCard(7)}>draw 7</button>
+                        <button onClick={() => this.prizeFromTopDeck(6)}>prize 6</button>
+
+                        {this.state.deck.length === 0 ? null : <Card 
+                            cardBack={true}
+                            onCardClick={() => this.drawCard(1)}
+                        />}
                     </div>
                 </div>
 
                 <div className="row">
-                    <div className="col">
+                    <div className="col discard-area">
                         <Discard cards={this.state.discard} />
                     </div>
-                    <div className="col">
+                    <div className="col lost-zone-area">
                         <LostZone cards={this.state.lostZone} />
                     </div>
                 </div>
 
                 <div className="row">
-                    <Field
-                        cards={this.state.field}
-                        onFieldCardClick={this.playCardFromHand}
-                    />
+                    <div className="col field-area">
+                        <Field
+                            cards={this.state.field}
+                        />
+                    </div>
                 </div>
 
                 <div className="row">
-                    <Hand
-                        cards={this.state.hand}
-                        onHandCardClick={this.playCardFromHand}
-                    />
+                    <div className="col hand-area">
+                        <Hand
+                            cards={this.state.hand}
+                            onHandCardClick={this.playCardFromHand}
+                        />
+                    </div>
                 </div>
             </div>
         );
